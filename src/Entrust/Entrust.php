@@ -7,7 +7,7 @@
  * @license MIT
  * @package Zizaco\Entrust
  */
-
+use Auth;
 class Entrust
 {
     /**
@@ -86,7 +86,8 @@ class Entrust
      */
     public function user()
     {
-        return $this->app->auth->user();
+        //return $this->app->auth->user();
+        return Auth::guard('admin')->user();
     }
 
     /**
