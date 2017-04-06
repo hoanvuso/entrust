@@ -11,6 +11,7 @@
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
+use Auth;
 class EntrustPermission
 {
 	protected $auth;
@@ -35,7 +36,7 @@ class EntrustPermission
 	 */
 	public function handle($request, Closure $next, $permissions)
 	{
-		if ($this->auth->guest() || !$request->user()->can(explode('|', $permissions))) {
+		if (Auth::guard('admin')->user()->can(explode('|', $permissions))) {
 			abort(403);
 		}
 
