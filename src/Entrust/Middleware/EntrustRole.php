@@ -36,7 +36,7 @@ class EntrustRole
 	 */
 	public function handle($request, Closure $next, $roles)
 	{
-		if (Auth::guard('admin')->user()->hasRole(explode('|', $roles))) {
+		if (!Auth::guard('admin')->user()->hasRole(explode('|', $roles))) {
 			abort(403);
 		}
 

@@ -36,7 +36,7 @@ class EntrustPermission
 	 */
 	public function handle($request, Closure $next, $permissions)
 	{
-		if (Auth::guard('admin')->user()->can(explode('|', $permissions))) {
+		if (!Auth::guard('admin')->user()->can(explode('|', $permissions))) {
 			abort(403);
 		}
 

@@ -38,7 +38,7 @@ class EntrustAbility
 	 */
 	public function handle($request, Closure $next, $roles, $permissions, $validateAll = false)
 	{
-		if (Auth::guard('admin')->user()->ability(explode('|', $roles), explode('|', $permissions), array('validate_all' => $validateAll))) {
+		if (!Auth::guard('admin')->user()->ability(explode('|', $roles), explode('|', $permissions), array('validate_all' => $validateAll))) {
 			abort(403);
 		}
 
